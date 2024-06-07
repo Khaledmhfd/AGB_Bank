@@ -38,10 +38,12 @@
                         </li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                product
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a id="dropdownButton" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    product
+                                </a>
+
+                        <ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
                                     <a class="dropdown-item" asp-action="card" asp-controller="Product">
                                         carte
@@ -54,7 +56,8 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> 
+                      
                     </ul>
                     <partial name="_LoginPartial"/>
                 </div>
@@ -73,6 +76,7 @@
             &copy; 2024 - GULF bank algérie - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
