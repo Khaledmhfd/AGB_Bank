@@ -1,6 +1,7 @@
 ﻿@using AGB_Bank.ViewModels;
 @model Register_ParticulierVM
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 
 @{
     ViewData["Title"] = "Register Particulier";
@@ -40,8 +41,10 @@
         };
 
     }
+
+
 <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-md-4 card p-3">
+    <div class="col-md-4 card p-3 register">
         <h2 class="text-center text-info">Register</h2>
 
         <form asp-action="Register_Particulier" method="post" class="row g-3">
@@ -114,9 +117,11 @@
                 <input asp-for="codePostal" class="form-control" />
                 <span asp-validation-for="codePostal" class="text-danger"></span>
             </div>
+            
             <div class="col-md-6">
                 <label asp-for="Profession" class="control-label"></label>
-                <select asp-for="Profession" class="form-control">
+                <select asp-for="Profession" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="infirmiers">infirmiers</option>
                     <option value="juristes">juristes</option>
                     <option value="personnel naviguant commerciel">personnel naviguant commerciel</option>
@@ -139,15 +144,17 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="Gender" class="control-label">Sex</label>
-                <select asp-for="Gender" class="form-control">
-                    <option value="Homme">Homme</option>
-                    <option value="Femme">Femme</option>
-                </select>
+                    <select asp-for="Gender" class="form-select">
+                        <option value="" selected disabled hidden></option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="EtatCivil" class="control-label">Etat civil</label>
-                <select asp-for="EtatCivil" class="form-control">
+                <select asp-for="EtatCivil" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="celibataire">celibataire</option>
                     <option value="marie(e)">marie(e)</option>
                     <option value="divorce(e)">divorce(e)</option>

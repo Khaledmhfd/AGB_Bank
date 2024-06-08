@@ -40,15 +40,17 @@
 
 
 }
+
 <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-md-4 card p-3">
+    <div class="col-md-4 card p-3 register" style="width: 800px">
         <h2 class="text-center text-info">Register</h2>
         <form asp-action="Register_Entreprise" method="post" class="row g-3">
             <div asp-validation-summary="ModelOnly" class="text-danger" id="alert"></div>
             <input asp-for="typeClient" type="hidden" value="entreprise" />
             <div class="col-md-6">
                 <label asp-for="nature_juridque" class="control-label">Nature juridque</label>
-                <select asp-for="nature_juridque" class="form-control">
+                <select asp-for="nature_juridque" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="SNC">SNC</option>
                     <option value="SARL publique">SARL publique</option>
                     <option value="SARL privé">SARL privé</option>
@@ -76,7 +78,8 @@
 
             <div class="col-md-6">
                 <label asp-for="Documents" class="control-label">Documents professionnels</label>
-                <select asp-for="Documents" class="form-control">
+                <select asp-for="Documents" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="agrément">agrément</option>
                     <option value="autorisation">autorisation</option>
                     <option value="NIF">NIF</option>
@@ -87,7 +90,8 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="ActivitePrincipal" class="control-label">Activité principal</label>
-                <select asp-for="ActivitePrincipal" class="form-control">
+                <select asp-for="ActivitePrincipal" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="industrie manufactoriées ">industrie manufactoriées </option>
                     <option value="industrie extractives">industrie extractives </option>
                     <option value="production et distrubition d'éléctricité de gaz">production et distrubition d'éléctricité de gaz </option>
@@ -98,10 +102,11 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="gl" class="control-label">GL</label>
-                <select asp-for="gl" class="form-control">
+                <select asp-for="gl" class="form-select">
                     @{
                         foreach (var cle in gl.Keys)
                         {
+                            <option value="" selected disabled hidden></option>
                             <option value="@cle">@cle</option>
 
                         }
@@ -121,7 +126,8 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="Gender" class="control-label">Sex</label>
-                <select asp-for="Gender" class="form-control">
+                <select asp-for="Gender" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="Homme">Homme</option>
                     <option value="Femme">Femme</option>
                 </select>
@@ -129,7 +135,8 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="EtatCivil" class="control-label">Etat Civil</label>
-                <select asp-for="EtatCivil" class="form-control">
+                <select asp-for="EtatCivil" class="form-select">
+                    <option value="" selected disabled hidden></option>
                     <option value="celibataire">celibataire</option>
                     <option value="marie(e)">marie(e)</option>
                     <option value="divorce(e)">divorce(e)</option>
@@ -139,11 +146,11 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="agence" class="control-label">Agence préféré</label>
-                <select asp-for="agence" class="form-control">
+                <select asp-for="agence" class="form-select">
                     @{
                         foreach (var cle in agences.Keys)
                         {
-                            Console.WriteLine(cle);
+                            <option value="" selected disabled hidden></option>
                             <option value="@cle">@cle</option>
 
                         }

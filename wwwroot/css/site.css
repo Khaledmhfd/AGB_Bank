@@ -98,3 +98,14 @@ dropdown
 .navbar-nav .nav-link:hover {
     color: white;
 }
+
+
+.register {
+    width: 800px;
+}
+
+@media (max-width: 473px) {
+    .register {
+        width: 500px;
+    }
+}
