@@ -87,10 +87,11 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="gl" class="control-label">GL</label>
-                <select asp-for="gl" class="form-control">
+                <select asp-for="gl" class="form-select">
                     @{
                         foreach (var cle in gl.Keys)
                         {
+                            <option value="" selected disabled hidden></option>
                             <option value="@cle">@cle</option>
 
                         }
@@ -100,11 +101,11 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="agence" class="control-label">Agence préféré</label>
-                <select asp-for="agence" class="form-control">
+                <select asp-for="agence" class="form-select">
                     @{
                         foreach (var cle in agences.Keys)
                         {
-                            Console.WriteLine(cle);
+                            <option value="" selected disabled hidden></option>
                             <option value="@cle">@cle</option>
 
                         }
