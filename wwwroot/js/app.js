@@ -143,7 +143,7 @@ function getExchangeValue() {
             exchangeTxt.innerHTML = `${amountVal} <span>${fromCurrency.value}</span> = ${total}<span> ${toCurrency.value}</span>`;
         })
         .catch(() => {
-            exchangeTxt.innerText = "Something went wrong";
+            exchangeTxt.innerText = "Il y a eu un problème.";
         });
 }
 
