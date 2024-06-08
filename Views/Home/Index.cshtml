@@ -5,12 +5,6 @@
 
 @Html.Partial("_Home") 
 
-<div class="container">
-    <h2 class="title-section text-center mb-4">produits recommendés</h2>
-    <div id="productContainer" class="row gy-3 row-cols-1 row-cols-md-3 g-4">
-        <div id="loadingSpinner"></div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -38,7 +32,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${data.product1.Name}</h5>
                                 <p class="card-text">${data.product1.Description}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#" class="btn btn-primary">Découvrir le produit</a>
                             </div>
                         </div>
                     </div>
@@ -55,7 +49,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${data.product2.Name}</h5>
                                 <p class="card-text">${data.product2.Description}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#" class="btn btn-primary">Découvrir le produit</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +67,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">${product.Name}</h5>
                                     <p class="card-text">${product.Description}</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Découvrir le produit</a>
                                 </div>
                             </div>
                         </div>
