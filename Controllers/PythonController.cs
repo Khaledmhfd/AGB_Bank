@@ -156,7 +156,7 @@ namespace AGB_Bank.Controllers
                 var EtatCivil = GetEtatCivil(user.EtatCivil);
                 var Gender = GetGender(user.Gender);
                 var codePostal = (int)user.codePostal;
-                var Revenu = (float)user.Revenu;
+                var Revenu = (int)user.Revenu;
                 var DateNaissance = user.dateNaissance;
                 DateTime dateActuelle = DateTime.Today;
                 int age = dateActuelle.Year - DateNaissance.Value.Year;

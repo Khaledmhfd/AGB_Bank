@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+@inject SignInManager<AppUser> SignInManager
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,7 +13,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-   @*  <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="~/AGB_Bank.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -23,43 +28,127 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Currency">échange de devises</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserDetails">compte</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="account_type">creation de compte</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
 
-                            <a id="dropdownButton" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    produits
-                                </a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        var user = await UserManager.GetUserAsync(User);
+                    
+                        if (await UserManager.IsInRoleAsync(user, "Admin"))
+                        {   
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UnconfirmedUsers">Utilisateurs</a>
+                                </li>
+                                @* <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Pack">Produits</a>
+                                </li> *@
+                                <li class="nav-item dropdown">
 
-                        <ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-action="card" asp-controller="Product">
-                                        cartes
+                                    <a id="dropdownButton" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        produits
                                     </a>
-                                    <a class="dropdown-item" asp-action="Pack" asp-controller="Product">
-                                        packs
-                                    </a>
-                                    <a class="dropdown-item" asp-action="Credit" asp-controller="Product">
-                                        credits
-                                    </a>
+
+                                    <ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Card" asp-controller="Admin">
+                                                Cartes
+                                            </a>
+                                            <a class="dropdown-item" asp-action="Pack" asp-controller="Admin">
+                                                Packs
+                                            </a>
+                                            <a class="dropdown-item" asp-action="Credit" asp-controller="Admin">
+                                                Crédits
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                        </li> 
-                      
-                    </ul>
-                    <partial name="_LoginPartial"/>
+                            <partial name="_LoginPartial" />
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Currency">échange de devises</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserDetails">compte</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="account_type">Création de compte</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+
+                                    <a id="dropdownButton" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Produits
+                                    </a>
+
+                                    <ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="card" asp-controller="Product">
+                                                Cartes
+                                            </a>
+                                            <a class="dropdown-item" asp-action="Pack" asp-controller="Product">
+                                                Packs
+                                            </a>
+                                            <a class="dropdown-item" asp-action="Credit" asp-controller="Product">
+                                                Crédits
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                            <partial name="_LoginPartial" />
+                        }
+                    }else
+                            {
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Currency">échange de devises</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserDetails">compte</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="account_type">creation de compte</a>
+                                    </li>
+
+                                    <li class="nav-item dropdown">
+
+                                        <a id="dropdownButton" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            produits
+                                        </a>
+
+                                        <ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li>
+                                                <a class="dropdown-item" asp-action="card" asp-controller="Product">
+                                                    Cartes
+                                                </a>
+                                                <a class="dropdown-item" asp-action="Pack" asp-controller="Product">
+                                                    Packs
+                                                </a>
+                                                <a class="dropdown-item" asp-action="Credit" asp-controller="Product">
+                                                    Crédits
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                                <partial name="_LoginPartial" />
+                    }
+                       
+                    
+                    
+            
                 </div>
             </div>
         </nav>

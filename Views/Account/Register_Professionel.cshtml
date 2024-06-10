@@ -39,7 +39,7 @@
         };
 }
 <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-md-4 card p-3 register">
+    <div class="col-md-4 card p-3 register" >
         <h2 class="text-center text-info">Register</h2>
         <form asp-action="Register_Professionel" method="post" class="row g-3">
             <div asp-validation-summary="ModelOnly" class="text-danger" id="alert"></div>
@@ -56,12 +56,12 @@
             </div>
 
             <div class="col-md-6">
-                <label asp-for="dateNaissance" class="control-label">Date de naissance</label>
+                <label asp-for="dateNaissance" class="control-label">Date de Naissance</label>
                 <input asp-for="dateNaissance" class="form-control" type="date">
                 <span asp-validation-for="dateNaissance" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="PaysNaissance" class="control-label">Pays de naissance</label>
+                <label asp-for="PaysNaissance" class="control-label">Pays de Naissance</label>
                 <input asp-for="PaysNaissance" class="form-control" />
                 <span asp-validation-for="PaysNaissance" class="text-danger"></span>
             </div>
@@ -76,7 +76,7 @@
                 <span asp-validation-for="PaysNaissance" class="text-danger"></span>
             </div> *@
             <div class="col-md-6">
-                <label asp-for="Registre" class="control-label"></label>
+                <label asp-for="Registre" class="control-label">Registre du commerce</label>
                 <input asp-for="Registre" class="form-control" />
                 <span asp-validation-for="Registre" class="text-danger"></span>
             </div>
@@ -93,7 +93,7 @@
                 <span asp-validation-for="Documents" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="ActivitePrincipal" class="control-label">Activité Principal</label>
+                <label asp-for="ActivitePrincipal" class="control-label">Activité Principale</label>
                 <select asp-for="ActivitePrincipal" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="industrie manufactoriées ">industrie manufactoriées </option>
@@ -105,7 +105,7 @@
                 <span asp-validation-for="ActivitePrincipal" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="agence" class="control-label">Agence préféré</label>
+                <label asp-for="agence" class="control-label">Agence préférée</label>
                 <select asp-for="agence" class="form-select">
                     @{
                         foreach (var cle in agences.Keys)
@@ -167,7 +167,7 @@
                 <span asp-validation-for="Revenu" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="Gender" class="control-label">Sex</label>
+                <label asp-for="Gender" class="control-label">Sexe</label>
                 <select asp-for="Gender" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="Homme">Homme</option>
@@ -176,7 +176,7 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="EtatCivil" class="control-label">Etat civil</label>
+                <label asp-for="EtatCivil" class="control-label">État civil</label>
                 <select asp-for="EtatCivil" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="celibataire">celibataire</option>
@@ -197,13 +197,13 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="ConfirmPassword" class="control-label">confirmer le mot de passe</label>
+                <label asp-for="ConfirmPassword" class="control-label">Confirmez votre mot de passe</label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="col-8">
-                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Se connecter</a>
+                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Vous avez un compte ?</a>
                 </div>
                 <div class="col-4">
                     <input type="submit" value="Enregistrer" class="btn btn-primary btn-sm float-end" />
@@ -223,7 +223,7 @@
         function showPopupWithRedirectToAction() {
             console.log("intérieur");
             Swal.fire({
-                title: "l'utilisateur est bien crée",
+                title: "L'utilisateur est créé avec succès",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',

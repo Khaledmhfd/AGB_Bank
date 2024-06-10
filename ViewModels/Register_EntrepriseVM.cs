@@ -1,15 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AGB_Bank.Models;
+using System.ComponentModel.DataAnnotations;
+using static AGB_Bank.Models.NumericOnlyAttribute;
 
 namespace AGB_Bank.ViewModels
 {
     public class Register_EntrepriseVM
     {
+
+
+        [Required]
+        [NumericOnly(ErrorMessage = "Le numéro de téléphone ne doit contenir que des chiffres.")]
+        public string? PhoneNumber { get; set; }
         [Required]
         public string? typeClient { get; set; }
         [Required]
+        [IntegerOnly(ErrorMessage = "La valeur doit être un entier.")]
+        [PositiveInteger]
         public int? codePostal { get; set; }
-        [Required]
-        public float? Revenu { get; set; }
+        [Required(ErrorMessage = "Le revenu est requis.")]
+        [IntegerOnly(ErrorMessage = "La valeur doit être un entier.")]
+        [PositiveInteger]
+        public int? Revenu { get; set; }
 
         [Required(ErrorMessage = "La date de naissance est obligatoire.")]
         [DataType(DataType.Date, ErrorMessage = "Veuillez entrer une date valide.")]
@@ -21,8 +32,7 @@ namespace AGB_Bank.ViewModels
 
         [Required]
         public string? agence { get; set; }
-        [Required]
-        public string? PhoneNumber { get; set; }
+
         [Required]
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }

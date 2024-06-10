@@ -4,6 +4,7 @@ using AGB_Bank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGB_Bank.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240609121900_confirmed var")]
+    partial class confirmedvar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,8 +107,8 @@ namespace AGB_Bank.Migrations
                     b.Property<string>("Registre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Revenu")
-                        .HasColumnType("int");
+                    b.Property<float?>("Revenu")
+                        .HasColumnType("real");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -128,7 +131,6 @@ namespace AGB_Bank.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("dateNaissance")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("dénomination_sociale")

@@ -42,13 +42,13 @@
 }
 
 <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-md-4 card p-3 register" style="width: 800px">
+    <div class="col-md-4 card p-3 register" >
         <h2 class="text-center text-info">Register</h2>
         <form asp-action="Register_Entreprise" method="post" class="row g-3">
             <div asp-validation-summary="ModelOnly" class="text-danger" id="alert"></div>
             <input asp-for="typeClient" type="hidden" value="entreprise" />
             <div class="col-md-6">
-                <label asp-for="nature_juridque" class="control-label">Nature juridque</label>
+                <label asp-for="nature_juridque" class="control-label">Nature Juridique</label>
                 <select asp-for="nature_juridque" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="SNC">SNC</option>
@@ -65,7 +65,7 @@
                 <span asp-validation-for="nature_juridque" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="dénomination_sociale" class="control-label">Dénomination sociale</label>
+                <label asp-for="dénomination_sociale" class="control-label">Dénomination Sociale</label>
                 <input asp-for="dénomination_sociale" class="form-control" />
                 <span asp-validation-for="dénomination_sociale" class="text-danger"></span>
             </div>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="col-md-6">
-                <label asp-for="Documents" class="control-label">Documents professionnels</label>
+                <label asp-for="Documents" class="control-label">Documents Professionnels</label>
                 <select asp-for="Documents" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="agrément">agrément</option>
@@ -89,7 +89,7 @@
                 <span asp-validation-for="Documents" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="ActivitePrincipal" class="control-label">Activité principal</label>
+                <label asp-for="ActivitePrincipal" class="control-label">Activité Principale</label>
                 <select asp-for="ActivitePrincipal" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="industrie manufactoriées ">industrie manufactoriées </option>
@@ -125,7 +125,7 @@
                 <span asp-validation-for="dateNaissance" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="Gender" class="control-label">Sex</label>
+                <label asp-for="Gender" class="control-label">Sexe</label>
                 <select asp-for="Gender" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="Homme">Homme</option>
@@ -134,7 +134,7 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="EtatCivil" class="control-label">Etat Civil</label>
+                <label asp-for="EtatCivil" class="control-label">État Civil</label>
                 <select asp-for="EtatCivil" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="celibataire">celibataire</option>
@@ -145,7 +145,7 @@
                 <span asp-validation-for="EtatCivil" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="agence" class="control-label">Agence préféré</label>
+                <label asp-for="agence" class="control-label">Agence préférée</label>
                 <select asp-for="agence" class="form-select">
                     @{
                         foreach (var cle in agences.Keys)
@@ -165,7 +165,7 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="Document_number" class="control-label">Numéro document</label>
+                <label asp-for="Document_number" class="control-label">Numéro de document</label>
                 <input asp-for="Document_number" class="form-control" />
                 <span asp-validation-for="Document_number" class="text-danger"></span>
             </div>
@@ -190,13 +190,13 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="ConfirmPassword" class="control-label">confirmer le mot de passe </label>
+                <label asp-for="ConfirmPassword" class="control-label">Confirmez votre mot de passe</label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="col-8">
-                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Se connecter</a>
+                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Vous avez un compte ?</a>
                 </div>
                 <div class="col-4">
                     <input type="submit" value="Enregistrer" class="btn btn-primary btn-sm float-end" />
@@ -215,7 +215,7 @@
         function showPopupWithRedirectToAction() {
             console.log("intérieur");
             Swal.fire({
-                title: "l'utilisateur est bien crée",
+                title: "L'utilisateur est créé avec succès",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',

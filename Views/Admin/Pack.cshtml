@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AGB_Bank.Models.product.pack_product> // Assurez-vous de spécifier le bon modèle de données   ||   // le nom de namespace de model puis le nom de la classe
+
+@using AGB_Bank.ViewModels;
+
+@{
+    ViewData["Title"] = "pack products";
+}
+
+<style>
+    h1, h2 {
+        text-align: center;
+        margin: 10px auto;
+    }
+    .description{
+        max-width: 500px;
+    }
+</style>
+
+<div class="container">
+    <h2>Produits des packs</h2>
+    <a href='@Url.Action("Add", new { type = "pack" })'>ajouter un produit</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th class="description">Description</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td class="description">@user.Description</td>
+                    <td><img src="@user.ImageUrl" class="card-img-top" alt="..." style="width:250px"></td>
+                    <td><a href='@Url.Action("View", new { id = user.Id, type = "pack" })'>View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

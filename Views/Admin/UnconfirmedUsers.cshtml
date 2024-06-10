@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AppUser>
+<div class="container">
+    <h2>les utilisateurs non confirmés</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>
+                        <form asp-action="ConfirmUser" method="post">
+                            <input type="hidden" name="userId" value="@user.Id" />
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (TempData["ShowSuccessPopup"] != null && (bool)TempData["ShowSuccessPopup"])
+{
+    <script>
+        // Fonction pour afficher le popup avec la redirection vers une autre action du contrôleur
+
+        function showPopupWithRedirectToAction() {
+
+            Swal.fire({
+                title: "l'utilisateur est confirmé",
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirection vers une autre action du contrôleur
+                    window.location.href = '/Admin/UnconfirmedUsers';
+                }
+            });
+        }
+
+        // Appel de la fonction pour afficher le popup
+        showPopupWithRedirectToAction();
+
+
+    </script>
+}

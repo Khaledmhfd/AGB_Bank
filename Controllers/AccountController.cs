@@ -21,6 +21,12 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
         ViewData["ReturnUrl"] = returnUrl;
         if (ModelState.IsValid)
         {
+            var user = await userManager.FindByEmailAsync(model.Email);
+            if (user != null && !user.IsConfirmed)
+            {
+                ModelState.AddModelError(string.Empty, "Your account has not been confirmed by an administrator.");
+                return View(model);
+            }
             //login
             var result = await signInManager.PasswordSignInAsync(model.Email!, model.Password!, model.RememberMe, false);
 
@@ -113,11 +119,14 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
 
                 // Appeler la fonction JavaScript pour afficher le popup
                 ViewData["ShowSuccessPopup"] = true;
+                // Envoyez un email de confirmation, si nécessaire
+                return RedirectToAction("Login");
             }
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error.Description);
             }
+
         }
         return View(model);
     }

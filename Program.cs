@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(connectionString));
 
 
+
 // pour la session
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -39,10 +40,10 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
         // Condition pour un email unique
         options.User.RequireUniqueEmail = true;
     })
+    .AddRoles<IdentityRole>() // ajouter les roles dans la base de données
     .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication();
-
 
 var app = builder.Build();
 
@@ -67,4 +68,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
     app.Run();
+
+
 

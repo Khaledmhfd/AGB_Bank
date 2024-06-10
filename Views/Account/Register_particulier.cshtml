@@ -1,8 +1,7 @@
 ﻿@using AGB_Bank.ViewModels;
 @model Register_ParticulierVM
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
 
+   
 @{
     ViewData["Title"] = "Register Particulier";
 }
@@ -64,7 +63,7 @@
             </div>
 
             <div class="col-md-6">
-                <label asp-for="dateNaissance" class="control-label">Date de naissance</label>
+                <label asp-for="dateNaissance" class="control-label">Date de Naissance</label>
                 <input asp-for="dateNaissance" class="form-control" type="date">
                 <span asp-validation-for="dateNaissance" class="text-danger"></span>
             </div>
@@ -75,7 +74,7 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="PaysNaissance" class="control-label">Pays de naissance</label>
+                <label asp-for="PaysNaissance" class="control-label">Pays de Naissance</label>
                 <input asp-for="PaysNaissance" class="form-control" />
                 <span asp-validation-for="PaysNaissance" class="text-danger"></span>
             </div>
@@ -100,7 +99,7 @@
                 <span asp-validation-for="gl" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="agence" class="control-label">Agence préféré</label>
+                <label asp-for="agence" class="control-label">Agence préférée</label>
                 <select asp-for="agence" class="form-select">
                     @{
                         foreach (var cle in agences.Keys)
@@ -114,7 +113,7 @@
                 <span asp-validation-for="agence" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="codePostal" class="control-label">Code postal</label>
+                <label asp-for="codePostal" class="control-label">Code Postal</label>
                 <input asp-for="codePostal" class="form-control" />
                 <span asp-validation-for="codePostal" class="text-danger"></span>
             </div>
@@ -144,7 +143,7 @@
                 <span asp-validation-for="Revenu" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="Gender" class="control-label">Sex</label>
+                <label asp-for="Gender" class="control-label">Sexe</label>
                     <select asp-for="Gender" class="form-select">
                         <option value="" selected disabled hidden></option>
                         <option value="Homme">Homme</option>
@@ -153,7 +152,7 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="EtatCivil" class="control-label">Etat civil</label>
+                <label asp-for="EtatCivil" class="control-label">État Civil</label>
                 <select asp-for="EtatCivil" class="form-select">
                     <option value="" selected disabled hidden></option>
                     <option value="celibataire">celibataire</option>
@@ -179,13 +178,13 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="ConfirmPassword" class="control-label">confirmer le mot de passe</label>
+                <label asp-for="ConfirmPassword" class="control-label">Confirmez votre mot de passe</label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="col-8">
-                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Se connecter</a>
+                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Vous avez un compte ?</a>
                 </div>
                 <div class="col-4">
                     <input type="submit" value="Enregistrer" class="btn btn-primary btn-sm float-end" />
@@ -203,7 +202,7 @@
         function showPopupWithRedirectToAction() {
             console.log("intérieur");
             Swal.fire({
-                title: "l'utilisateur est bien crée",
+                title: "L'utilisateur est créé avec succès",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',

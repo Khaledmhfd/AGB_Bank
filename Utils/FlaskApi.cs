@@ -49,7 +49,7 @@ namespace AGB_Bank.Utils
             
         }
         // Accès aux propriétés de l'utilisateur actuel
-        public async Task<string> SetApiDataAsync(int typeClient, int EtatCivil, int Gender ,int codePostal, int agence, int gl, float Revenu, int age)
+        public async Task<string> SetApiDataAsync(int typeClient, int EtatCivil, int Gender ,int codePostal, int agence, int gl, int Revenu, int age)
         {
             var data = new {
                 typeClient = typeClient,
