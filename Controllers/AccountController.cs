@@ -29,11 +29,20 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
             }
             //login
             var result = await signInManager.PasswordSignInAsync(model.Email!, model.Password!, model.RememberMe, false);
+            // Vérifiez si l'utilisateur a le rôle "Admin"
+            var isAdmin = await userManager.IsInRoleAsync(user, "Admin");
 
             if (result.Succeeded)
             {
-                //return RedirectToLocal(returnUrl);
-                return RedirectToAction("Run", "Python");
+                if (isAdmin)
+                {
+                    return RedirectToAction("index", "Home");
+                }
+                else {
+                    //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Run", "Python");
+                }
+                
             }
 
             ModelState.AddModelError("", "Invalid login attempt");
@@ -115,12 +124,12 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
 
             if (result.Succeeded)
             {
-                await signInManager.SignInAsync(user, false);
+                //await signInManager.SignInAsync(user, false);
 
                 // Appeler la fonction JavaScript pour afficher le popup
                 ViewData["ShowSuccessPopup"] = true;
                 // Envoyez un email de confirmation, si nécessaire
-                return RedirectToAction("Login");
+                //return RedirectToAction("Login");
             }
             foreach (var error in result.Errors)
             {
@@ -167,7 +176,7 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
 
             if (result.Succeeded)
             {
-                await signInManager.SignInAsync(user, false);
+                //await signInManager.SignInAsync(user, false);
                 ViewData["ShowSuccessPopup"] = true;
 
                 //return RedirectToLocal(urlAvecReturnUrl);
@@ -214,7 +223,7 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
 
             if (result.Succeeded)
             {
-                await signInManager.SignInAsync(user, false);
+                //await signInManager.SignInAsync(user, false);
                 ViewData["ShowSuccessPopup"] = true;
 
             }

@@ -38,8 +38,13 @@
                 </ul>
             </li>
         }
+        <script>
+            document.getElementById('dropdownButton1').addEventListener('click', function () {
+                console.log('clicked');
+                document.getElementById('dropdownMenu1').classList.toggle('show');
+            });
+        </script>
 
-        
     }
     else
     {
@@ -56,9 +61,3 @@
 </ul>
 
 
-<script>
-    document.getElementById('dropdownButton1').addEventListener('click', function () {
-        console.log('clicked');
-        document.getElementById('dropdownMenu1').classList.toggle('show');
-    });
-</script> 

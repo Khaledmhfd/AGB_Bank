@@ -26,19 +26,6 @@
             {"OUARGLA", 300}
         };
 
-    Dictionary<string, int> gl = new Dictionary<string, int>
-        {
-            { "Comptes Courants Dinars", 2500 },
-            { "Comptes de Chèques clientèle", 2504 },
-            { "Comptes de chèques personnel AGB", 2505 },
-            { "Comptes des professions libérales", 2506 },
-            { "Comptes courants commercants", 2507 },
-            { "Comptes Chèques finance Islamique", 2514 },
-            { "Livret d'épargne et d'investissement F.Islamique", 2574 },
-            { "Compte épargne non rémunéré", 2576 },
-            { "Livret d’épargne Classique", 2599 }
-        };
-
     }
 
 
@@ -85,16 +72,17 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="gl" class="control-label">GL</label>
-                <select asp-for="gl" class="form-select">
-                    @{
-                        foreach (var cle in gl.Keys)
-                        {
-                            <option value="" selected disabled hidden></option>
-                            <option value="@cle">@cle</option>
+                <label class="control-label">Type de produit préféré</label>
+                <select class="form-select" id="conditions" onchange="updateOptions()">
+                    <option value="classique">classique</option>
+                    <option value="participatif">participatif</option>
+                </select>
+                <span  class="text-danger"></span>
+            </div>
 
-                        }
-                    }
+            <div class="col-md-6">
+                <label asp-for="gl" class="control-label">GL</label>
+                <select asp-for="gl" class="form-select" id="options">
                 </select>
                 <span asp-validation-for="gl" class="text-danger"></span>
             </div>
@@ -194,6 +182,35 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function updateOptions() {
+        var conditionSelect = document.getElementById("conditions");
+        var optionsSelect = document.getElementById("options");
+        var selectedCondition = conditionSelect.value;
+
+        // Effacer les options existantes
+        optionsSelect.innerHTML = "";
+
+        // Définir les nouvelles options en fonction de la condition sélectionnée
+        var options = [];
+        if (selectedCondition === "classique") {
+            options = ["Comptes de Chèques clientèle", "Comptes de chèques personnel AGB", "Livret d’épargne Classique"];
+        } else if (selectedCondition === "participatif") {
+            options = ["Compte épargne non rémunéré", "Livret d'épargne et d'investissement F.Islamique",
+                "Comptes Chèques finance Islamique"];
+        } 
+        // Ajouter les nouvelles options au menu déroulant
+        options.forEach(function (option) {
+            var optionElement = document.createElement("option");
+            optionElement.value = option;
+            optionElement.textContent = option;
+            optionsSelect.appendChild(optionElement);
+        });
+        
+    }
+    // Ajouter un écouteur d'événement pour initialiser les options lorsque la page est complètement chargée
+    window.onload = updateOptions();
+</script>
 @if (ViewData["ShowSuccessPopup"] != null && (bool)ViewData["ShowSuccessPopup"])
 {
     <script type="text/javascript">
@@ -202,14 +219,15 @@
         function showPopupWithRedirectToAction() {
             console.log("intérieur");
             Swal.fire({
-                title: "L'utilisateur est créé avec succès",
+                title: "L'utilisateur est créé avec succès, en attendant l'acceptation d'admin",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Redirection vers une autre action du contrôleur
-                    window.location.href = '/Python/Run';
+                    //window.location.href = '/Python/Run';
+                    window.location.href = '/Account/login';
                 }
             });
         }
@@ -225,7 +243,6 @@
     var erreur = erreurElement ? erreurElement.innerText : '';
 
     if (erreur !== '') {
-        console.log("okkkkk");
         Swal.fire({
             title: "Erreur",
             icon: 'error',

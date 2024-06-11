@@ -9,7 +9,7 @@
     <div class="col-md-4 card p-3">
         <h2 class="text-center text-info">Login</h2>
         <form asp-action="Login" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger" id="alert" style="display:none"></div>
             <div class="mb-1">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
@@ -22,7 +22,7 @@
             </div>
             <div class="mb-1 form-check">
                 <label class="form-check-label">
-                    <input asp-for="RememberMe" class="form-check-input" /> @Html.DisplayNameFor(a => a.RememberMe)
+                    <input asp-for="RememberMe" class="form-check-input" /> Se souvenir de moi
                 </label>
             </div>
             <div class="row">
@@ -40,9 +40,23 @@
         </form>
     </div>
 </div>
-
-@section Scripts{
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    var erreurElement = document.querySelector('#alert li');
+    var erreur_ = erreurElement ? erreurElement.innerText : '';
+
+    if (erreur_ !== '') {
+        Swal.fire({
+            title: "Erreur",
+            icon: 'error',
+            html: erreur_,
+            confirmButtonText: 'OK'
+        });
+    }
+</script>
