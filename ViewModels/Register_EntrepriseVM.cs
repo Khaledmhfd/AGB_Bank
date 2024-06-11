@@ -47,17 +47,17 @@ namespace AGB_Bank.ViewModels
 
         [DataType(DataType.MultilineText)]
         public string? Address { get; set; }
-
-
-        
         public string? Documents { get; set; }
-        
-        
         public string? ActivitePrincipal { get; set; }
         public string? gl { get; set; }
-
+        [Required]
+        [IntegerOnly(ErrorMessage = "La valeur doit être un entier.")]
+        [PositiveInteger]
         public int? Document_number { get; set; }
         public int? chiffre_affaire { get; set; }
+        [Required]
+        [IntegerOnly(ErrorMessage = "La valeur doit être un entier.")]
+        [PositiveInteger]
         public int? effectif { get; set; }
         public string? nature_juridque { get; set; }
         public string? dénomination_sociale { get; set; }

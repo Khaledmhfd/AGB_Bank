@@ -61,6 +61,7 @@ namespace AGB_Bank.ViewModels
         [Required]
         public string? EtatCivil { get; set; }
         [Required]
+        [NoNumbersOrSymbols(ErrorMessage = "Le nom ne doit pas contenir de chiffres ni de symboles.")]
         public string? PaysNaissance { get; set; }
 
     }
