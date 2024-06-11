@@ -28,17 +28,6 @@ namespace AGB_Bank.Controllers
         }
 
         [HttpPost]
-        //public async void ConfirmUser(string userId)
-        //{
-        //    var user = await _userManager.FindByIdAsync(userId);
-        //    if (user != null)
-        //    {
-        //        user.IsConfirmed = true;
-        //        await _userManager.UpdateAsync(user);
-        //        TempData["ShowSuccessPopup"] = true;
-        //    }
-
-        //}
         public async Task<IActionResult> ConfirmUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -50,6 +39,46 @@ namespace AGB_Bank.Controllers
             }
             return RedirectToAction("UnconfirmedUsers");
         }
+        //public async void ConfirmUser(string userId)
+        //{
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user != null)
+        //    {
+        //        user.IsConfirmed = true;
+        //        await _userManager.UpdateAsync(user);
+        //        TempData["ShowSuccessPopup"] = true;
+        //    }
+
+        //}
+
+        // Méthode POST pour supprimer l'utilisateur
+        [HttpPost]
+        
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                TempData["ShowSuccessPopup_delete"] = true;
+                return RedirectToAction("UnconfirmedUsers");
+            }
+
+            // Ajoutez des messages d'erreur au modèle d'état si nécessaire
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(user);
+        }
+  
+                    
 
 
         // les produits

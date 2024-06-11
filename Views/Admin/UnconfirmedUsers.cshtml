@@ -1,4 +1,12 @@
 ﻿@model IEnumerable<AppUser>
+
+
+@{
+    ViewData["Title"] = "Unconfirmed Users";
+}
+
+
+
 <div class="container">
     <h2>les utilisateurs non confirmés</h2>
 
@@ -7,6 +15,8 @@
             <tr>
                 <th>Email</th>
                 <th>Actions</th>
+                <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -17,9 +27,17 @@
                     <td>
                         <form asp-action="ConfirmUser" method="post">
                             <input type="hidden" name="userId" value="@user.Id" />
-                            <button type="submit" class="btn btn-primary">Confirm</button>
+                            <button type="submit" class="btn btn-primary">Confirmer</button>
                         </form>
                     </td>
+                    <td>
+                        <form asp-action="DeleteUser" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                        
+                    </td>
+                    
                 </tr>
             }
         </tbody>
@@ -54,4 +72,32 @@
 
 
     </script>
+
+}
+@if (TempData["ShowSuccessPopup_delete"] != null && (bool)TempData["ShowSuccessPopup_delete"])
+{
+    <script>
+        // Fonction pour afficher le popup avec la redirection vers une autre action du contrôleur
+
+        function showPopupWithRedirectToAction() {
+
+        Swal.fire({
+        title: "l'utilisateur est supprimé",
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+        }).then((result) => {
+        if (result.isConfirmed) {
+        // Redirection vers une autre action du contrôleur
+        window.location.href = '/Admin/UnconfirmedUsers';
+        }
+        });
+        }
+
+        // Appel de la fonction pour afficher le popup
+        showPopupWithRedirectToAction();
+
+
+    </script>
+
 }
