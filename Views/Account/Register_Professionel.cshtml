@@ -3,7 +3,7 @@
 
 
 @{
-    ViewData["Title"] = "Register Particulier";
+    ViewData["Title"] = "Register Professionel";
 }
 @{
     var agences = new System.Collections.Generic.Dictionary<string, int>
@@ -108,14 +108,14 @@
                 <span asp-validation-for="agence" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label class="control-label">Type de produit préféré</label>
+                <label class="control-label">Catégorie de produits souhaitée</label>
                 <select class="form-select" id="conditions" onchange="updateOptions()">
+                    <option value="" selected disabled hidden></option>
                     <option value="classique">classique</option>
                     <option value="participatif">participatif</option>
                 </select>
                 <span class="text-danger"></span>
             </div>
-
             <div class="col-md-6">
                 <label asp-for="gl" class="control-label">GL</label>
                 <select asp-for="gl" class="form-select" id="options">
@@ -214,11 +214,14 @@
         // Effacer les options existantes
         optionsSelect.innerHTML = "";
         // Définir les nouvelles options en fonction de la condition sélectionnée
+
         var options = [];
         if (selectedCondition === "classique") {
-            options = ["Comptes de chèques personnel AGB", "Comptes des professions libérales", "Livret d’épargne Classique"];
+            options = ["Comptes des professions libérales", "Comptes courants commercants"];
         } else if (selectedCondition === "participatif") {
             options = [];
+        } else {
+            options = [" "];
         }
         // Ajouter les nouvelles options au menu déroulant
         options.forEach(function (option) {
@@ -239,7 +242,7 @@
         function showPopupWithRedirectToAction() {
            
             Swal.fire({
-                title: "L'utilisateur est créé avec succès, en attendant l'acceptation d'admin",
+                title: "L'utilisateur est créé avec succès, En attente de l'acceptation de l'administrateur.",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',
@@ -263,7 +266,6 @@
     var erreur = erreurElement ? erreurElement.innerText : '';
 
     if (erreur !== '') {
-        console.log("okkkkk");
         Swal.fire({
             title: "Erreur",
             icon: 'error',

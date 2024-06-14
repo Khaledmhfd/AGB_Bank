@@ -72,8 +72,9 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label class="control-label">Type de produit préféré</label>
+                <label class="control-label">Catégorie de produits souhaitée</label>
                 <select class="form-select" id="conditions" onchange="updateOptions()">
+                    <option value="" selected disabled hidden></option>
                     <option value="classique">classique</option>
                     <option value="participatif">participatif</option>
                 </select>
@@ -92,8 +93,8 @@
                     @{
                         foreach (var cle in agences.Keys)
                         {
-                            <option value="" selected disabled hidden></option>
-                            <option value="@cle">@cle</option>
+                                <option value="" selected disabled hidden></option>
+                                <option value="@cle">@cle</option>
 
                         }
                     }
@@ -198,7 +199,9 @@
         } else if (selectedCondition === "participatif") {
             options = ["Compte épargne non rémunéré", "Livret d'épargne et d'investissement F.Islamique",
                 "Comptes Chèques finance Islamique"];
-        } 
+        } else {
+            options = [" "];
+        }
         // Ajouter les nouvelles options au menu déroulant
         options.forEach(function (option) {
             var optionElement = document.createElement("option");
@@ -219,7 +222,7 @@
         function showPopupWithRedirectToAction() {
             console.log("intérieur");
             Swal.fire({
-                title: "L'utilisateur est créé avec succès, en attendant l'acceptation d'admin",
+                title: "L'utilisateur est créé avec succès, En attente de l'acceptation de l'administrateur.",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',

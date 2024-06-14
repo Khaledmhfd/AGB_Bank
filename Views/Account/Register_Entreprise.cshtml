@@ -90,8 +90,9 @@
                 <span asp-validation-for="ActivitePrincipal" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label class="control-label">Type de produit préféré</label>
+                <label class="control-label">Catégorie de produits souhaitée</label>
                 <select class="form-select" id="conditions" onchange="updateOptions()">
+                    <option value="" selected disabled hidden></option>
                     <option value="classique">classique</option>
                     <option value="participatif">participatif</option>
                 </select>
@@ -212,6 +213,8 @@
             options = ["Comptes Courants Dinars"];
         } else if (selectedCondition === "participatif") {
             options = [];
+        } else {
+            options = [" "];
         }
         // Ajouter les nouvelles options au menu déroulant
         options.forEach(function (option) {
@@ -233,7 +236,7 @@
         function showPopupWithRedirectToAction() {
             
             Swal.fire({
-                title: "L'utilisateur est créé avec succès, en attendant l'acceptation d'admin",
+                title: "L'utilisateur est créé avec succès, En attente de l'acceptation de l'administrateur.",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'OK',
