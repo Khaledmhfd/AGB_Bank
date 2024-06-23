@@ -72,13 +72,13 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label class="control-label">Catégorie de produits souhaitée</label>
-                <select class="form-select" id="conditions" onchange="updateOptions()">
+                <label asp-for="Category" class="control-label">Catégorie de produits souhaitée</label>
+                <select asp-for="Category" class="form-select" id="conditions" onchange="updateOptions()">
                     <option value="" selected disabled hidden></option>
                     <option value="classique">classique</option>
                     <option value="participatif">participatif</option>
                 </select>
-                <span  class="text-danger"></span>
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
 
             <div class="col-md-6">
@@ -200,7 +200,7 @@
             options = ["Compte épargne non rémunéré", "Livret d'épargne et d'investissement F.Islamique",
                 "Comptes Chèques finance Islamique"];
         } else {
-            options = [" "];
+            options = [""];
         }
         // Ajouter les nouvelles options au menu déroulant
         options.forEach(function (option) {

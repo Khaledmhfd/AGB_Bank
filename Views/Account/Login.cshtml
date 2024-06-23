@@ -9,7 +9,8 @@
     <div class="col-md-4 card p-3">
         <h2 class="text-center text-info">Login</h2>
         <form asp-action="Login" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
-            <div asp-validation-summary="ModelOnly" class="text-danger" id="alert" style="display:none"></div>
+            @* style="display:none" *@
+            <div asp-validation-summary="ModelOnly" class="text-danger" id="alert" ></div>
             <div class="mb-1">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />

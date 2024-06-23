@@ -24,7 +24,7 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user != null && !user.IsConfirmed)
             {
-                ModelState.AddModelError(string.Empty, "Your account has not been confirmed by an administrator.");
+                ModelState.AddModelError(string.Empty, "Votre compte n'a pas été confirmé par un administrateur.");
                 return View(model);
             }
             //login
@@ -118,6 +118,7 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
                 Address = model.Address,
                 Email = model.Email,
                 UserName = model.Email,
+                Category = model.Category,
             };
 
             var result = await userManager.CreateAsync(user, model.Password!);
@@ -170,6 +171,7 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
                 ActivitePrincipal = model.ActivitePrincipal,
                 Email = model.Email,
                 UserName = model.Email,
+                Category = model.Category,
             };
 
             var result = await userManager.CreateAsync(user, model.Password!);
@@ -216,7 +218,8 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
                 chiffre_affaire = model.chiffre_affaire,
                 effectif = model.effectif,
                 nature_juridque = model.nature_juridque,
-                dénomination_sociale = model.dénomination_sociale
+                dénomination_sociale = model.dénomination_sociale,
+                Category = model.Category,
             };
 
             var result = await userManager.CreateAsync(user, model.Password!);

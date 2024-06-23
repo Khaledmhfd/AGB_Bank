@@ -10,11 +10,12 @@ public class AppUser : IdentityUser
     public bool IsConfirmed { get; set; }
     public string? mot_passe { get; set; }
     [Required]
-    public string? typeClient { get; set; }
-    
+    public string? typeClient { get; set; }  
     public int? codePostal { get; set; }
+    [Required]
     public string? gl { get; set; }
-
+    [Required]
+    public string? Category { get; set; }
     [Required]
     public string? agence { get; set; }
     public int? Revenu { get; set; }

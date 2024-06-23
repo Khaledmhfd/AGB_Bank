@@ -92,92 +92,6 @@ namespace AGB_Bank.Controllers
             var products = _context.packProduct.ToList();
             return View(products);
         }
-        //// afficher le détails
-        //[HttpGet]
-        //public async Task<IActionResult> View(int id)
-        //{
-        //    var product = await  _context.packProduct.FirstOrDefaultAsync(p => p.Id == id);
-
-        //    if (product != null) {
-        //        var viewModel = new UpdateProductViewModel()
-        //        {
-        //            Name = product.Name,
-        //            Description = product.Description,
-        //            ImageUrl = product.ImageUrl
-
-        //        };
-
-        //        return await Task.Run(() => View("View", viewModel)) ;
-        //    }
-
-        //    //return RedirectToAction("Pack");
-
-        //    return NotFound();
-        //}
-
-        //// update
-        //[HttpPost]
-        //public async Task<IActionResult> View(UpdateProductViewModel model)
-        //{
-        //    var product = await _context.packProduct.FindAsync(model.Id);
-
-        //    if (product != null)
-        //    {
-        //        product.Name = model.Name;
-        //        product.Description = model.Description;
-        //        product.ImageUrl = model.ImageUrl;
-
-
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction("Pack");
-        //    }
-        //    return RedirectToAction("Pack");
-        //}
-
-        //// ajouter 
-        //[HttpGet]
-        //public async Task<IActionResult> Add()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult Add(AddProductViewModel model)
-        //{
-        //    var product = new pack_product()
-        //    {
-        //        Name= model.Name,
-        //        Description= model.Description,
-        //        ImageUrl = model.ImageUrl,
-        //    };
-
-        //    _context.packProduct.Add(product);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Pack");
-        //}
-        //// supprimer
-        //[HttpPost]
-        //public async Task<IActionResult> Delete(UpdateProductViewModel model)
-        //{
-        //    var product = await _context.packProduct.FindAsync(model.Id);
-
-        //    if (product != null)
-        //    {
-
-        //        _context.packProduct.Remove(product);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction("Pack");
-        //    }
-        //    return RedirectToAction("Pack");
-        //}
-
-
-
-
-
-
-
-
-
 
 
         // card
@@ -361,19 +275,6 @@ namespace AGB_Bank.Controllers
         // supprimer
 
         [HttpPost]
-        //public async Task<IActionResult> Delete(UpdateProductViewModel model)
-        //{
-        //    var product = await _context.packProduct.FindAsync(model.Id);
-
-        //    if (product != null)
-        //    {
-
-        //        _context.packProduct.Remove(product);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction("Pack");
-        //    }
-        //    return RedirectToAction("Pack");
-        //}
 
         public async Task<IActionResult> Delete(UpdateProductViewModel model, string type)
         {
