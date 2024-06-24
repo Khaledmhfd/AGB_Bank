@@ -15,6 +15,42 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
         return View();
     }
 
+    //[HttpPost]
+    //public async Task<IActionResult> Login(LoginVM model, string? returnUrl = null)
+    //{
+    //    ViewData["ReturnUrl"] = returnUrl;
+    //    if (ModelState.IsValid)
+    //    {
+    //        var user = await userManager.FindByEmailAsync(model.Email);
+    //        if (user != null && !user.IsConfirmed)
+    //        {
+    //            ModelState.AddModelError(string.Empty, "Votre compte n'a pas été confirmé par un administrateur.");
+    //            return View(model);
+    //        }
+    //        //login
+    //        var result = await signInManager.PasswordSignInAsync(model.Email!, model.Password!, model.RememberMe, false);
+    //        // Vérifiez si l'utilisateur a le rôle "Admin"
+    //        var isAdmin = await userManager.IsInRoleAsync(user, "Admin");
+
+    //        if (result.Succeeded)
+    //        {
+    //            if (isAdmin)
+    //            {
+    //                return RedirectToAction("index", "Home");
+    //            }
+    //            else {
+    //                //return RedirectToLocal(returnUrl);
+    //                return RedirectToAction("Run", "Python");
+    //            }
+
+    //        }
+
+    //        ModelState.AddModelError("", "Tentative de connexion invalide");
+    //    }
+    //    return View(model);
+    //}
+
+
     [HttpPost]
     public async Task<IActionResult> Login(LoginVM model, string? returnUrl = null)
     {
@@ -22,33 +58,40 @@ public class AccountController(SignInManager<AppUser> signInManager, UserManager
         if (ModelState.IsValid)
         {
             var user = await userManager.FindByEmailAsync(model.Email);
-            if (user != null && !user.IsConfirmed)
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Utilisateur non trouvé.");
+                return View(model);
+            }
+
+            if (!user.IsConfirmed)
             {
                 ModelState.AddModelError(string.Empty, "Votre compte n'a pas été confirmé par un administrateur.");
                 return View(model);
             }
-            //login
+
+            // login
             var result = await signInManager.PasswordSignInAsync(model.Email!, model.Password!, model.RememberMe, false);
-            // Vérifiez si l'utilisateur a le rôle "Admin"
-            var isAdmin = await userManager.IsInRoleAsync(user, "Admin");
 
             if (result.Succeeded)
             {
+                var isAdmin = await userManager.IsInRoleAsync(user, "Admin");
                 if (isAdmin)
                 {
-                    return RedirectToAction("index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
-                else {
-                    //return RedirectToLocal(returnUrl);
+                else
+                {
+                    // return RedirectToLocal(returnUrl);
                     return RedirectToAction("Run", "Python");
                 }
-                
             }
 
-            ModelState.AddModelError("", "Invalid login attempt");
+            ModelState.AddModelError(string.Empty, "Tentative de connexion invalide");
         }
         return View(model);
     }
+
     [Authorize]
     public async Task<IActionResult> UserDetails()
     {
