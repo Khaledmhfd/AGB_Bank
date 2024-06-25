@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using static AGB_Bank.Models.NumericOnlyAttribute;
 
 namespace AGB_Bank.Models;
 
@@ -54,6 +55,7 @@ public class AppUser : IdentityUser
 
     public int? Document_number { get; set; }
     public int? chiffre_affaire { get; set; }
+    [GreaterThanFive]
     public int? effectif { get; set; }
     public string? nature_juridque { get; set; }
     public string? dénomination_sociale { get; set; }
@@ -173,7 +175,26 @@ public class PositiveIntegerAttribute : ValidationAttribute
 
         return new ValidationResult("Le revenu est requis.");
     }
+
 }
 
+    // pour l'effecitf
+    public class GreaterThanFiveAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null)
+            {
+                return ValidationResult.Success; 
+            }
+
+            if (value is int intValue && intValue > 5)
+            {
+                return ValidationResult.Success;
+            }
+
+            return new ValidationResult("Effectif doit être supérieur à 5.");
+        }
+    }
 
 }

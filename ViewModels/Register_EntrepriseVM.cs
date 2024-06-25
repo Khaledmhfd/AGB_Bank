@@ -72,8 +72,27 @@ namespace AGB_Bank.ViewModels
         [Required(ErrorMessage = "l'effectif est requis. ")]
         [IntegerOnly(ErrorMessage = "La valeur doit être un entier.")]
         [PositiveInteger]
+        [GreaterThanFive]
         public int? effectif { get; set; }
         public string? nature_juridque { get; set; }
         public string? dénomination_sociale { get; set; }
+    }
+
+    public class GreaterThanFiveAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
+
+            if (value is int intValue && intValue > 5)
+            {
+                return ValidationResult.Success;
+            }
+
+            return new ValidationResult("Effectif doit être supérieur à 5.");
+        }
     }
 }
